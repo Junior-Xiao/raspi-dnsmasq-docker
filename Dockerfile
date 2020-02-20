@@ -1,13 +1,12 @@
 FROM multiarch/alpine:armv7-edge
 LABEL maintainer="juniorxiao@hotmail.com"
 # webproc release settings
-ENV WEBPROC_VERSION 0.3.3
-ENV WEBPROC_URL https://github.com/jpillora/webproc/releases/download/v$WEBPROC_VERSION/webproc_$WEBPROC_VERSION_linux_armv7.gz
+ENV WEBPROC_URL https://github.com/jpillora/webproc/releases/download/v0.3.3/webproc_0.3.3_linux_armv7.gz
 # fetch dnsmasq and webproc binary
 RUN apk update \
 	&& apk --no-cache add dnsmasq \
 	&& apk add --no-cache --virtual .build-deps curl \
-	&& curl -sL $WEBPROC_URL | gzip -d - > /usr/local/bin/webproc \
+	&&   | gzip -d - > /usr/local/bin/webproc \
 	&& chmod +x /usr/local/bin/webproc \
 	&& apk del .build-deps
 #configure dnsmasq
